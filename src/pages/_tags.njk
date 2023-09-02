@@ -1,0 +1,23 @@
+---
+pagination:
+  data: series
+  size: 1
+  alias: tag
+permalink: "/tags/{{ tag.name | slugify }}/"
+---
+
+{%- set pages = collections[tag.name] -%}
+
+<header>
+  <h1>{{ tag.name }}</h1>
+  <p>{{ tag.description }}</p>
+</header>
+
+<section data-count="{{ pages | length }}">
+  {% for p in pages %}
+  <article>
+    <h1>{{ p.data.title }}</h1>
+    <a href="{{ p.url }}">More&hellip;</a>
+  </article>
+  {% endfor %}
+</section>
